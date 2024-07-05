@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>素因数分解</title>
+  </head>
+  <body>
+      <h1 style="text-align:center">素数判定機</h1>
+      <h3 style="text-align:center">入力した数字が素数か判別します<br>素数でない場合、素因数分解の計算結果を表示します</h3>
+ 
+ <form style="text-align:center">
+    <input type="text" id="input_number" value="2">
+    <input type="button" onclick="judge()" value="判定">
+  </form>
+  <div id="output_message" style="text-align:center"></div>
+   <div id="output_message2" style="text-align:center"></div>
+  <script language="javascript" type="text/javascript">
+  function judge() {
+    var divisor = 0;
+    var answer;
+    var number = document.getElementById("input_number").value;
+    if(isNaN(number) == false){
+    for(var i = 1;i<=number;i++){
+        if(number%i == 0){
+            divisor++;
+           }
+    }
+      if(divisor == 2){
+         answer = "素数"
+          document.getElementById("output_message2").innerHTML = "";
+         }else{
+         answer = "素数ではない"
+             primeFactorization(number);
+                  }
+    var output_message = "入力された数字「" + number + "」は"+answer+"です<br>約数は"+divisor+"個でした";
+    document.getElementById("output_message").innerHTML = output_message;
+  }else{
+      var output_message = "数字を入力してください"
+      document.getElementById("output_message").innerHTML = output_message;
+  }
+  }
+      function primeFactorization(n){
+          var sqrt_number = Math.floor(Math.sqrt(n));
+          var index = 0;
+          var array = [];
+          for(var i = 2;i <= sqrt_number;i++){
+              if((n%i) == 0){
+                 index = 0;
+                  do{
+                     index++;
+                     n = n/i;
+                 }while((n%i) == 0);
+                  array.push(" "+i+"^"+index+" ");
+                }
+          }
+          if(n > sqrt_number){
+             array.push(" "+n+"^1 ");
+             }
+          document.getElementById("output_message2").innerHTML = "素因数分解の結果は<br>"+array.join('×');
+      }
+  </script>
+  </body>
+</html>
