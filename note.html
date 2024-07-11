@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>メモ帳</title>
+  </head>
+  <body>
+      <h1 style="text-align:center">リアルタイム文字数カウンタ</h1>
+
+  <div class="wordcounter">
+  <textarea name="" id="textarea"></textarea>
+  <div class="wordcount">
+    <div>現在</div>
+    <div class="length">0</div>
+    <div>文字</div>
+   </div>
+  <script language="javascript" type="text/javascript">
+     const textArea = document.querySelector('#textarea');
+     const length = document.querySelector('.length');
+     textArea.addEventListener('input', () => {
+       length.textContent = textArea.value.length;
+     }, false);
+  </script>
+  </body>
+</html>
